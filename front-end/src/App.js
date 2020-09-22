@@ -9,7 +9,7 @@ function App() {
     <Router>
     <div className="App">
     <Route exact path='/' component={LoginForm} />
-    <PrivateRoute exact path='/protected' component={ProtectedPage} />
+    {/* <PrivateRoute exact path='/protected' component={ProtectedPage} /> */}
     </div>
     </Router>
   );
