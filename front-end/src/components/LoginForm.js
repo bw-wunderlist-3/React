@@ -1,7 +1,25 @@
 import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
+import styled from 'styled-components'
+
+
+const StyledForm = styled.div`
+border: 2px solid black;
+width: 30%;
+
+.formInputs{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    margin: 2%;
+}
+`
 
 const LoginForm = () => {
 
@@ -37,28 +55,26 @@ const LoginForm = () => {
   
   
   return (
-    <div className='form-contiainer'>
+    <StyledForm className='form-contiainer'>
+        <h1>Sign In To Your Account</h1>
         <form onSubmit={login}>
-            <label htmlFor='username'>Username:</label>
-            <br></br>
-            <input type="text" placeholder="Username" name="username" value={credentials.username} ref={register({required: true, min: 5})} />
-            <br></br>
-            {errors.username && 'Username must be longer than 5 characters'}
+            <div className="formInputs">
+                <label htmlFor='username'>Username:</label>
+                <input type="text" placeholder="Username" name="username" value={credentials.username} ref={register({required: true, min: 5})} />
+                {errors.username && 'Username must be longer than 5 characters'}
 
 
-            <br></br>
-            <label htmlFor='password'>Password:</label>
-            <br></br>
-            <input type="password" placeholder="Password" name="password" value={credentials.password} ref={register({required: true, min: 5})} />
-            <br></br>
-            {errors.password && 'Password must be longer than 5 characters'}
-            
-            <input type="submit" />
+                <label htmlFor='password'>Password:</label>
+                <input type="password" placeholder="Password" name="password" value={credentials.password} ref={register({required: true, min: 5})} />
+                {errors.password && 'Password must be longer than 5 characters'}
+                
+                <input type="submit" />
+            </div>
             <div>
-                <p>Don't have an account? Sign up Here </p>
+                <p>Don't have an account? <Link>Sign up Here</Link> </p>
             </div>
         </form>
-    </div>
+    </StyledForm>
   );
 }
 
