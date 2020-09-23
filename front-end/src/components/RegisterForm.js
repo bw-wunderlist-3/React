@@ -88,6 +88,21 @@ const RegisterForm = () => {
                 <input type="submit" className='submit' />
             </form>
         </StyledFormContainer>
+
+        <div>
+            {
+                registerForm.map((user, index) =>{
+                    const {username, password} = user;
+                    return(
+                        <div>
+                            <h2>Username: {username}</h2>
+                            <p>Password Length: {password.length}</p>
+                        </div>
+                    )
+
+                })
+            }
+        </div>
     );
 }
 
