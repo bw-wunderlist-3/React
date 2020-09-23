@@ -1,10 +1,17 @@
 
 
 export const initialState = {
-    data: [],
+    user: [{
+        username: '',
+        password: '',
+        name: '',
+        email: '',
+        phone: '',
+        role: ''
+    }],
     isLoading: false,
-    selected: false,
-    id: null
+    selected: false
+    
    
 
 }
@@ -28,14 +35,14 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                data: action.payload
+                user: action.payload
             }
 
             case DEL_ITEM:
                 return {
                     ...state,
                     isLoading: false,
-                    data: action.payload
+                    user: action.payload
                 }
 
             default:
