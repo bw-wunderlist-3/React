@@ -3,12 +3,20 @@ import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
+import reducer from './utils/reducer'
 import {BrowserRouter as Router} from 'react-router-dom'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(reducer, applyMiddleware(thunk))
+const logger = ({getState}) => next => action => {
+  console.log('Dispatching this type of action:', action)
+  next(action)
+}
+
+let store = createStore(reducer, applyMiddleware(logger, thunk))
+
+
 
 ReactDOM.render(
   <Provider store={store}>

@@ -21,6 +21,7 @@ input{
 }
 `
 
+
 const LoginForm = () => {
 
   const [credentials, setCredentials] = useState({
@@ -41,7 +42,7 @@ const LoginForm = () => {
   const login = e => {
     e.preventDefault()
     axiosWithAuth()
-    .post('/login', credentials)
+    .post('/users/login', credentials)
     .then(res => {
       localStorage.setItem('token', res.data.payload)
       history.push('/protected')
@@ -55,20 +56,21 @@ const LoginForm = () => {
   
   
   return (
-    <StyledForm className='form-contiainer'>
+    <StyledForm className='form-contiainer' >
         <h1>Sign In To Your Account</h1>
         <form onSubmit={login}>
             <div className="formInputs">
                 <label htmlFor='username'>Username:</label>
-                <input type="text" placeholder="Username" name="username" value={credentials.username} ref={register({required: true, min: 5})} />
+                <input type="text" placeholder="Username" name="username" value={credentials.username} ref={register({required: true, min: 5})} onChange={handleChanges} />
                 {errors.username && 'Username must be longer than 5 characters'}
-
+                {console.log(credentials)}
+                
 
                 <label htmlFor='password'>Password:</label>
-                <input type="password" placeholder="Password" name="password" value={credentials.password} ref={register({required: true, min: 5})} />
+                <input type="password" placeholder="Password" name="password" value={credentials.password} ref={register({required: true, min: 5})} onChange={handleChanges} />
                 {errors.password && 'Password must be longer than 5 characters'}
                 
-                <input type="submit" />
+                <button>{login}</button>
             </div>
             <div>
                 <p>Don't have an account? <Link>Sign up Here</Link> </p>
@@ -79,3 +81,6 @@ const LoginForm = () => {
 }
 
 export default LoginForm
+
+
+

@@ -1,14 +1,8 @@
-
+import {LOADING, SUCCESS, FAILURE, CREATE_ITEM, EDIT_ITEM, DEL_ITEM} from './actions'
 
 export const initialState = {
-    user: [{
-        username: '',
-        password: '',
-        name: '',
-        email: '',
-        phone: '',
-        role: ''
-    }],
+    body: [],
+    error: '',
     isLoading: false,
     selected: false
     
@@ -21,6 +15,7 @@ const reducer = (state = initialState, action) => {
         case LOADING: 
         return {
             ...state,
+            body: action.payload,
             isLoading: true
         }
 
@@ -28,24 +23,26 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                data: action.payload
-                
-            }
+                body: action.payload
+                }
+
         case EDIT_ITEM:
             return {
                 ...state,
                 isLoading: false,
-                user: action.payload
+                body: action.payload
             }
 
             case DEL_ITEM:
                 return {
                     ...state,
                     isLoading: false,
-                    user: action.payload
+                    body: action.payload
                 }
 
             default:
                 return state
     }
 }
+
+export default reducer
