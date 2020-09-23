@@ -1,4 +1,4 @@
-import axiosWithAuth from './axiosWithAuth'
+import {axiosWithAuth} from './axiosWithAuth'
 export const LOADING = 'LOADING'
 export const SUCCESS = 'SUCCESS'
 export const FAILURE = 'FAILURE'
@@ -38,3 +38,4 @@ export const itemPost = data => dispatch => {
     })
 }
 
+// export default connect(mapPropsToState, {smurfGet, smurfPost})(App)
