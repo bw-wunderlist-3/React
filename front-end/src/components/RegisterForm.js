@@ -63,6 +63,7 @@ const RegisterForm = () => {
     }
   
     return (
+        <>
         <StyledFormContainer className='register-form-container'>
             <h1>Join Us Today</h1>
             <form className='form' onSubmit={handleSubmit(onSubmit)}>
@@ -103,6 +104,7 @@ const RegisterForm = () => {
                 })
             }
         </div>
+        </>
     );
 }
 
