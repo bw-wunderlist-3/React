@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
-import reducer from './utils/reducer'
+import { reducer } from './utils/reducer'
 import {BrowserRouter as Router} from 'react-router-dom'
 import './index.css';
 import App from './App';
@@ -14,7 +14,7 @@ const logger = ({getState}) => next => action => {
   next(action)
 }
 
-let store = createStore(reducer, applyMiddleware(logger, thunk))
+let store = createStore(reducer, applyMiddleware(thunk, logger))
 
 
 
