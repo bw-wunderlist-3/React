@@ -1,7 +1,36 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components'
 import axios from 'axios'
+import { Link, useHistory } from 'react-router-dom'
+import logo from '../images/Wunderlist_Logo.png'
+
+
+const Header = styled.header`
+display: flex;
+justify-content: space-between;
+background-color: #594A4E;
+font-size: 1.5rem;
+color: white;
+
+nav{
+    margin:2%;
+    width:30%;
+}
+.link{
+    color:white;
+    text-decoration:none;
+    &:hover{
+        color:#F44E31;
+    }
+}
+
+.navspan{
+    margin:3%;
+    border-right: 2px solid white;
+}
+`
+
 
 const Flex = styled.div`
 display:flex;
@@ -18,8 +47,8 @@ const StyledFormContainer = styled.div`
 border: 2px solid black;
 width: 30%;
 background-color: #E9E9E9;
-margin-top:19%;
-margin-bottom:20%;
+margin-top:11%;
+margin-bottom:12%;
 
 .form-header{
     background-color:#594a4e;
@@ -74,30 +103,26 @@ input{
 
 `
 
-
-
 const RegisterForm = () => {
-    const [registerForm, setRegisterForm] = useState([])
     const [newUser, setNewUser] = useState({
         username: '',
         password: '',
         email: ''
     })
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        axios
+        .post(``)
+        .then(() => {
+          history.push('/')
+        })
+        .catch(err => console.log(err))
+    }
+
     console.log(errors);
 
-    useEffect(()=>{
-        //only handle the initial fetch
-        axios
-          .get(``)
-          .then(res => {
-            setRegisterForm([...res.data])
-          })
-          .catch(err => console.log(err))
-      },[])
+    const history = useHistory()
 
-          //onchange
     const onChange = e => {
         const {name, value} = e.target;
 
@@ -108,6 +133,17 @@ const RegisterForm = () => {
     }
   
     return (
+        <>
+        <Header>
+        <img src={logo} alt="Wunderlist Logo"></img>
+        <nav>
+            <Link className="link" to="https://wunderlist-lambda.netlify.app/index.html">Home</Link>
+            <span className="navspan"></span>
+            <Link className="link" to="/login">Login</Link>
+            <span className="navspan"></span>
+            <Link className="link" to="/register">Sign Up</Link>
+        </nav>
+        </Header>
         <Flex>
         <StyledFormContainer className='register-form-container'>
             <div className="form-header">
@@ -144,7 +180,7 @@ const RegisterForm = () => {
                     return(
                         <div>
                             <h2>Username: {username}</h2>
-                            <p>Password Length: {password}</p>
+                            <p>Password: {password}</p>
                         </div>
                     )
 
@@ -152,6 +188,7 @@ const RegisterForm = () => {
             }
         </div> */}
         </Flex>
+        </>
     );
 }
 

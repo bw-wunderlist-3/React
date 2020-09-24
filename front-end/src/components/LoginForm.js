@@ -7,15 +7,6 @@ import styled from 'styled-components'
 
 //styles
 
-const Flex = styled.div`
-display: flex;
-justify-content:center;
-align-items: center;
-background-color: oldlace;
-color: #f44e31;
-`
-
-
 const StyledForm = styled.div`
  @media (min-width: 1000px) {
             width: 500px;
@@ -23,8 +14,8 @@ const StyledForm = styled.div`
 border: 2px solid black;
 width: 30%;
 background-color: #E9E9E9;
-margin-top:17%;
-margin-bottom:17%;
+margin-top:13%;
+margin-bottom:13%;
 
 .form-header{
     background-color: #594A4E;
@@ -73,6 +64,13 @@ button{
 .link{
     color:#F44E31;
 }
+`
+const Flex = styled.div`
+display: flex;
+justify-content:center;
+align-items: center;
+background-color: oldlace;
+color: #f44e31;
 `
 //styles end
 
