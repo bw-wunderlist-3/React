@@ -1,20 +1,18 @@
 import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components'
+import {useHistory} from 'react-router-dom'
 
 const StyledFormContainer = styled.div`
 border: 2px solid black;
 width:40%;
-
 label{
     margin-top:2%;
-
 }
 input{
     width:40%;
     margin-bottom: 3%;
 }
-
 .userInputs{
     display: flex;
     flex-direction: column;
@@ -32,6 +30,9 @@ input{
 
 
 const RegisterForm = () => {
+
+    const history = useHistory()
+
     const [registerForm, setRegisterForm] = useState([])
     const [newUser, setNewUser] = useState({
         username: '',
@@ -61,6 +62,19 @@ const RegisterForm = () => {
             [name]:value
         })
     }
+
+    const register = e => {
+        e.preventDefault()
+        axiosWithAuth()
+        .post('/users/register', credentials)
+        .then(res => {
+          localStorage.setItem('token', res.data.payload)
+          history.push('/protected')
+        })
+        .catch(err => {
+          console.log('Login form error catch: ', err)
+        })
+      }
   
     return (
         <StyledFormContainer className='register-form-container'>

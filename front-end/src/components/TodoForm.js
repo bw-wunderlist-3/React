@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {connect} from 'react-redux'
-import { itemPost } from '../utils/actions'
+import { createItem } from '../utils/actions'
+import { TodoList } from './TodoList'
 
 const TodoForm = props => {
     const [tasks, setTasks] = useState({
@@ -31,9 +32,11 @@ const TodoForm = props => {
                             placeholder= "Enter a new task"
                             onChange= { handleChanges }
                             value= { tasks.task }
+                            id={Date.now()}
                         />
                     </label>
-                    <button type="submit">Add Task</button>
+                    <button type="submit" onClick={ createItem }>Add Task</button>
+                    <TodoList />
                 </div>
             </form>
         </div>
