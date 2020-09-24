@@ -37,9 +37,9 @@ export const fetchData = () => {
 }
 
 
-export const createItem = item => {
+export const itemPost = item => {
     const addNewItem = axiosWithAuth()
-        .post('/tasks')
+        .post('/tasks', item)
     return (dispatch) => {
         dispatch({
             type: CREATE_ITEM

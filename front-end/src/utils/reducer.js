@@ -39,7 +39,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 // todoData: action.payload,
-                // isFetching: false
+                isFetching: true
                 }
 
         case CREATE_ITEM_SUCCESS:
