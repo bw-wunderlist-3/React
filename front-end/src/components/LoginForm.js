@@ -76,6 +76,7 @@ button{
 `
 //styles end
 
+
 const LoginForm = () => {
 
     const [credentials, setCredentials] = useState({
@@ -85,13 +86,28 @@ const LoginForm = () => {
 
     const history = useHistory()
 
-    const handleChanges = e => {
-        e.persist()
-        setCredentials({
-        ...credentials,
-        [e.target.name]: e.target.value
-        })
-    }
+
+  const handleChanges = e => {
+    e.persist()
+    setCredentials({
+      ...credentials,
+     [e.target.name]: e.target.value
+    })
+  }
+
+  const login = e => {
+    e.preventDefault()
+    axiosWithAuth()
+    .post('/users/login', credentials)
+    .then(res => {
+      localStorage.setItem('token', res.data.payload)
+      history.push('/protected')
+    })
+    .catch(err => {
+      console.log('Login form error catch: ', err)
+    })
+  }
+
 
     const login = e => {
         e.preventDefault()
@@ -108,7 +124,7 @@ const LoginForm = () => {
 
     const { register, errors } = useForm();
   
-  
+
     return (
         <Flex>
             <StyledForm className='form-contiainer' >
@@ -136,6 +152,7 @@ const LoginForm = () => {
             </StyledForm>
         </Flex>
     );
+
 }
 
 export default LoginForm
