@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {connect} from 'react-redux'
-import { itemPost } from '../utils/actions'
+import { TodoList } from './TodoList'
+import {itemPost} from '../utils/actions'
+import axiosWithAuth from "../utils/axiosWithAuth"
 
 const TodoForm = props => {
+    
     const [tasks, setTasks] = useState({
-        task: '',
-        userId: ''
-    })
+        task:"",        
+        date: Date.now(), //12-01-2020,        
+        user_id: '',       //Check to see what this is and if you are supposed to pass anything here.  
+        completed: false  //Will be a checkbox. Checkbox will automatically code a boolean       
+        })
+
 
     const handleChanges = e => {
         setTasks({
@@ -15,8 +21,15 @@ const TodoForm = props => {
         })
     }
 
+    // addNewTask = taskName =>{
+    //     setTasks({task: taskName, id:Date.now(), completed:false})
+
+    //   }
+    
+
     const formSubmit = e => {
-        props.itemPost(tasks)
+        props.itemPost({tasks})
+
     }
 
     return (
@@ -31,9 +44,32 @@ const TodoForm = props => {
                             placeholder= "Enter a new task"
                             onChange= { handleChanges }
                             value= { tasks.task }
+                            id={Date.now()}
                         />
                     </label>
+                    <label htmlFor='user_id'>
+                        <input 
+                            type='text'
+                            pattern='[0-9]'
+                            id='user_id'
+                            name='user_id'
+                            placeholder='enter your user ID number'
+                            value={tasks.user_id}
+                            onChange={handleChanges}
+                        />
+                    </label>
+                    <label htmlFor='completed'>
+                    <input 
+                        type='checkbox'
+                        id='completed'
+                        name='completed'
+                        value={false}
+
+                    />
+
+                    </label>
                     <button type="submit">Add Task</button>
+                    <TodoList />
                 </div>
             </form>
         </div>
@@ -43,9 +79,9 @@ const TodoForm = props => {
 const mapStateToProps = state => {
     return {
        
-        // props.itemPost: state.itemPost
+      itemPost: state.itemPost
     }
 }
 
 
-export default connect(mapStateToProps, {  })(TodoForm)
+export default connect(mapStateToProps, { itemPost })(TodoForm)

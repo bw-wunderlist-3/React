@@ -134,16 +134,6 @@ const RegisterForm = () => {
   
     return (
         <>
-        <Header>
-        <img src={logo} alt="Wunderlist Logo"></img>
-        <nav>
-            <Link className="link" to="https://wunderlist-lambda.netlify.app/index.html">Home</Link>
-            <span className="navspan"></span>
-            <Link className="link" to="/login">Login</Link>
-            <span className="navspan"></span>
-            <Link className="link" to="/register">Sign Up</Link>
-        </nav>
-        </Header>
         <Flex>
         <StyledFormContainer className='register-form-container'>
             <div className="form-header">

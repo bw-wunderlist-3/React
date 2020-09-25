@@ -128,7 +128,7 @@ const LoginForm = () => {
                         <button>Login{login}</button>
                     </div>
                     <div className='form-footer'>
-                        <p>Don't have an account? <Link className="link">Sign up Here</Link> </p>
+                        <p>Don't have an account? <Link to="/register" className="link">Sign up Here</Link> </p>
                     </div>
                 </form>
             </StyledForm>

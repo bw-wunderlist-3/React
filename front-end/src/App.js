@@ -6,9 +6,11 @@ import PrivateRoute from './utils/privateRoute'
 import {ProtectedPage} from './components/protectedPage'
 import RegisterForm from './components/RegisterForm'
 import NavBar from './components/NavBar'
+import {TodoList}  from './components/TodoList'
 
 function App() {
   return (
+    <>
     <Router>
     <div className="App">
     <NavBar />
@@ -17,8 +19,12 @@ function App() {
     <PrivateRoute exact path='/protected' component={ProtectedPage} />
     <Route path='/register' component={RegisterForm} />
     </div>
-    </Router>
-  ); 
+    </Router> 
+    <div>
+      <TodoList />
+    </div>
+    </>
+    );
 }
 
 export default App;
