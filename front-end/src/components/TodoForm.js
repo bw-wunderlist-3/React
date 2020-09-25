@@ -9,7 +9,7 @@ const TodoForm = props => {
     const [tasks, setTasks] = useState({
         task:"",        
         date: Date.now(), //12-01-2020,        
-        user_id: '',       //Check to see what this is and if you are supposed to pass anything here.  
+        used_id: '',       //Check to see what this is and if you are supposed to pass anything here.  
         completed: false  //Will be a checkbox. Checkbox will automatically code a boolean       
         })
 
@@ -28,7 +28,9 @@ const TodoForm = props => {
     
 
     const formSubmit = e => {
+        e.preventDefault()
         props.itemPost({tasks})
+        
 
     }
 

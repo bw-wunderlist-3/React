@@ -38,13 +38,9 @@ export const fetchData = () => {
 
 
 export const itemPost = item => {
-    const addNewItem = axiosWithAuth()
-        .post('/tasks', item)
     return (dispatch) => {
-        dispatch({
-            type: CREATE_ITEM
-        })
-    addNewItem
+    axiosWithAuth()
+        .post('/tasks', item)
         .then(({ todoData }) => {
             console.log(`I'm a new task`, todoData)
             dispatch({

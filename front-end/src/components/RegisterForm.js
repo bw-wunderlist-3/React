@@ -68,8 +68,10 @@ const RegisterForm = () => {
         axiosWithAuth()
         .post('/users/register', credentials)
         .then(res => {
-          localStorage.setItem('token', res.data.payload)
-          history.push('/protected')
+        //   localStorage.setItem('token', res.data.payload)
+        //   history.push('/protected')
+        console.log(res.data)
+        
         })
         .catch(err => {
           console.log('Login form error catch: ', err)

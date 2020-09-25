@@ -44,7 +44,7 @@ const LoginForm = () => {
     axiosWithAuth()
     .post('/users/login', credentials)
     .then(res => {
-      localStorage.setItem('token', res.data.payload)
+      localStorage.setItem('token', res.data.token)
       history.push('/protected')
     })
     .catch(err => {
