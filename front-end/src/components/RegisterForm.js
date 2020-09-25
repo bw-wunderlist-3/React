@@ -104,6 +104,24 @@ const RegisterForm = () => {
             [name]:value
         })
     }
+
+
+    const register = e => {
+        e.preventDefault()
+        axiosWithAuth()
+        .post('/users/register', credentials)
+        .then(res => {
+        //   localStorage.setItem('token', res.data.payload)
+        //   history.push('/protected')
+        console.log(res.data)
+        
+        })
+        .catch(err => {
+          console.log('Login form error catch: ', err)
+        })
+      }
+
+
   
     return (
         <>
