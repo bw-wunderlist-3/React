@@ -2,34 +2,7 @@ import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components'
 import axios from 'axios'
-import { Link, useHistory } from 'react-router-dom'
-import logo from '../images/Wunderlist_Logo.png'
-
-
-const Header = styled.header`
-display: flex;
-justify-content: space-between;
-background-color: #594A4E;
-font-size: 1.5rem;
-color: white;
-
-nav{
-    margin:2%;
-    width:30%;
-}
-.link{
-    color:white;
-    text-decoration:none;
-    &:hover{
-        color:#F44E31;
-    }
-}
-
-.navspan{
-    margin:3%;
-    border-right: 2px solid white;
-}
-`
+import { useHistory } from 'react-router-dom'
 
 
 const Flex = styled.div`

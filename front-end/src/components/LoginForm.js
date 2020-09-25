@@ -106,21 +106,7 @@ const LoginForm = () => {
     })
   }
 
-
-    const login = e => {
-        e.preventDefault()
-        axiosWithAuth()
-        .post('/users/login', credentials)
-        .then(res => {
-        localStorage.setItem('token', res.data.payload)
-        history.push('/protected')
-        })
-        .catch(err => {
-        console.log('Login form error catch: ', err)
-        })
-    }
-
-    const { register, errors } = useForm();
+      const { register, errors } = useForm();
   
 
     return (

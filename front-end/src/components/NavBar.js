@@ -43,7 +43,7 @@ const NavBar = () => {
         <nav>
             <a className="link" href="https://wunderlist-lambda.netlify.app/index.html">Home</a>
             <span className="navspan"></span>
-            <Link className="link" to="/login">Login</Link>
+            <Link className="link" to="/">Login</Link>
             <span className="navspan"></span>
             <Link className="link" to="/register">Sign Up</Link>
         </nav>
