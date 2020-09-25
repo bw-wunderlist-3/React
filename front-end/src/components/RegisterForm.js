@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 
 const Flex = styled.div`
@@ -77,7 +78,7 @@ input{
 `
 
 const RegisterForm = () => {
-    const [newUser, setNewUser] = useState({
+    const [credentials, setCredentials] = useState({
         username: '',
         password: '',
         email: ''
@@ -99,14 +100,14 @@ const RegisterForm = () => {
     const onChange = e => {
         const {name, value} = e.target;
 
-        setNewUser({
-            ...newUser,
+        setCredentials({
+            ...credentials,
             [name]:value
         })
     }
 
 
-    const register = e => {
+    const registerEvent = e => {
         e.preventDefault()
         axiosWithAuth()
         .post('/users/register', credentials)
@@ -134,13 +135,13 @@ const RegisterForm = () => {
 
                 <div className="userInputs">
                     <label>Username:</label>
-                    <input type="text" placeholder="Enter Username" name="username" value={newUser.username} onChange={onChange} ref={register({required: true, min: 5})} />
+                    <input type="text" placeholder="Enter Username" name="username" value={credentials.username} onChange={onChange} ref={register({required: true, min: 5})} />
                     {errors.username && 'Username must be at least 5 characters'}
                     <label>Password:</label>
-                    <input type="password" placeholder="Enter Password" name="password" value={newUser.password} onChange={onChange} ref={register({required: true, min: 5})} />
+                    <input type="password" placeholder="Enter Password" name="password" value={credentials.password} onChange={onChange} ref={register({required: true, min: 5})} />
                     {errors.password && 'Password must be at least 5 characters'}
                     <label>Email:</label>
-                    <input type="email" placeholder="Enter your Email" name="email" value={newUser.email} onChange={onChange} ref={register({required: true})} />
+                    <input type="email" placeholder="Enter your Email" name="email" value={credentials.email} onChange={onChange} ref={register({required: true})} />
                     {errors.email && 'Please enter a vaild email'}
                 </div>
 
@@ -149,7 +150,7 @@ const RegisterForm = () => {
                     <br></br>
                     {errors.terms && 'You must agree to the terms and conditions'}
                 <div className="form-footer">
-                <input type="submit" className='submit' />
+                <button>{registerEvent}</button>
                 </div>
             </form>
         </StyledFormContainer>
